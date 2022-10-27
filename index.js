@@ -23,6 +23,14 @@ $(document).keypress(() => {
         isLevelStarted = true;
     }
 })
+
+$(document).click(() => {
+    if(!isLevelStarted){
+        nextSequence();
+        $('#level-title').text(`Level: ${level}`)
+        isLevelStarted = true;
+    }
+})
 //sound for when a color gets clicked or when it is being selected by the script
 const playSound = (name) => {
     let audio = new Audio(`./sounds/${name}.mp3`);
