@@ -35,6 +35,7 @@ const gameOver_sound = () => {
 }
 
 const nextSequence = () => {
+    userClickedPattern = [];
     level++;
     $('#level-title').text(`Level: ${level}`);
 
@@ -62,15 +63,11 @@ const checkAnswer = (currentLevel) => {
                 nextSequence();
             },1000)
         }
-    }
+    }else {
+        console.log('wrong')
+        gameOver();
 
-    // if(currentLevel === playerChoice){
-    //     console.log('success')
-    //     nextSequence();
-    // } else {
-    //     gameOver();
-    //     return (level = 0, userClickedPattern = [], gamePattern=[]);
-    // }
+    }
 }
 
 const gameOver = () => {
@@ -80,5 +77,8 @@ const gameOver = () => {
     setTimeout(() => {
         $('body').removeClass('game-over')
     },250)
+    level = 0;
+    gamePattern=[];
+    isLevelStarted=false;
 }
 
