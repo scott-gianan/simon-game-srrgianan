@@ -11,9 +11,9 @@ $('.btn').click((event) => {
     animatePress(userChosenColor);
 
     checkAnswer(userClickedPattern.length-1)
-    console.log(userClickedPattern.length-1)
-    console.log(userChosenColor);
-    console.log(userClickedPattern);
+    // console.log(userClickedPattern.length-1)
+    // console.log(userChosenColor);
+    // console.log(userClickedPattern);
 })
 
 $(document).keypress(() => {
@@ -57,14 +57,14 @@ const animatePress = (currentColor) => {
 
 const checkAnswer = (currentLevel) => {
     if(userClickedPattern[currentLevel]===gamePattern[currentLevel]){
-        console.log('success')
+        //console.log('success')
         if(userClickedPattern.length===gamePattern.length){
             setTimeout(() => {
                 nextSequence();
             },1000)
         }
     }else {
-        console.log('wrong')
+        //console.log('wrong')
         gameOver();
 
     }
