@@ -15,32 +15,17 @@ $('.btn').click((event) => {
     // console.log(userChosenColor);
     // console.log(userClickedPattern);
 })
-
-$(document).keypress(() => {
+const startGame = () => {
     if(!isLevelStarted){
         nextSequence();
-        $('#level-title').text(`Level: ${level}`)
+        $('#level-title').text(`Level: ${level}`);
         isLevelStarted = true;
     }
-})
-
-$(document).click(() => {
-    if(!isLevelStarted){
-        nextSequence();
-        $('#level-title').text(`Level: ${level}`)
-        isLevelStarted = true;
-    }
-})
-//sound for when a color gets clicked or when it is being selected by the script
-const playSound = (name) => {
-    let audio = new Audio(`./sounds/${name}.mp3`);
-    audio.play();
-};
-//sound for when the game is over
-const gameOver_sound = () => {
-    let audio = new Audio('./sounds/wrong.mp3')
-    audio.play();
 }
+
+$(document).keydown(startGame);
+
+$(document).click(startGame);
 
 const nextSequence = () => {
     userClickedPattern = [];
@@ -55,13 +40,6 @@ const nextSequence = () => {
    playSound(randomChosenColor);
 
 };
-//Animation for when clicking a colour
-const animatePress = (currentColor) => {
-    $(`.${currentColor}`).addClass('pressed')
-    setTimeout(() => {
-        $(`.${currentColor}`).removeClass('pressed')
-    },100)
-}
 
 const checkAnswer = (currentLevel) => {
     if(userClickedPattern[currentLevel]===gamePattern[currentLevel]){
@@ -73,8 +51,9 @@ const checkAnswer = (currentLevel) => {
         }
     }else {
         //console.log('wrong')
-        gameOver();
-
+        setTimeout(() => {
+            gameOver();
+        }, 1);
     }
 }
 
@@ -90,3 +69,22 @@ const gameOver = () => {
     isLevelStarted=false;
 }
 
+//Animation for when clicking a colour
+const animatePress = (currentColor) => {
+    $(`.${currentColor}`).addClass('pressed')
+    setTimeout(() => {
+        $(`.${currentColor}`).removeClass('pressed')
+    },100)
+}
+
+//sound for when a color gets clicked or when it is being selected by the script
+const playSound = (name) => {
+    let audio = new Audio(`./sounds/${name}.mp3`);
+    audio.play();
+};
+
+//sound for when the game is over
+const gameOver_sound = () => {
+    let audio = new Audio('./sounds/wrong.mp3')
+    audio.play();
+}
