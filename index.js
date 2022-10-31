@@ -24,7 +24,6 @@ const startGame = () => {
 }
 
 $(document).keydown(startGame);
-
 $(document).click(startGame);
 
 const nextSequence = () => {
@@ -43,14 +42,12 @@ const nextSequence = () => {
 
 const checkAnswer = (currentLevel) => {
     if(userClickedPattern[currentLevel]===gamePattern[currentLevel]){
-        //console.log('success')
         if(userClickedPattern.length===gamePattern.length){
             setTimeout(() => {
                 nextSequence();
             },1000)
         }
     }else {
-        //console.log('wrong')
         setTimeout(() => {
             gameOver();
         }, 1);
@@ -59,7 +56,7 @@ const checkAnswer = (currentLevel) => {
 
 const gameOver = () => {
     gameOver_sound();
-    $('#level-title').text('Game over! Press any key to continue')
+    $('#level-title').text('Game over! Press any key or click anywhere to continue')
     $('body').addClass('game-over');
     setTimeout(() => {
         $('body').removeClass('game-over')
