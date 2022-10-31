@@ -58,3 +58,13 @@ h3 {
   font-size: 1.5rem;
   color: #FEF2BF;
 }
+
+.container{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.top-row, .btm-row{
+  display:flex;
+}
